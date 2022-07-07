@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": false,
+    "target": "ESNext",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "allowJs": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",     
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src",
+    "./src/**/*.ts",
+    "test",
+    "e2e",
+    "integration"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist", 
+    "prod"
+  ]
+}

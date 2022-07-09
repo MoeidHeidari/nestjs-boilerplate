@@ -3,8 +3,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from '../config/env.objects';
 import { validate } from '../config/env.validation';
-import { LoggerInterceptor } from '../../domain/interceptors';
-import * as modules from '../../domain/modules';
+import { LoggerInterceptor } from '../../core/interceptors'
+import * as modules from '../../core/modules'
 import { CommonModule } from './common/common.module';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 

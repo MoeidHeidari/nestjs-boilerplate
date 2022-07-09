@@ -38,6 +38,7 @@
     "dotenv-expand": "^5.1.0",
     "dotenv-flow": "^3.2.0",
     "faker": "^5.1.0",
+    "prom-client": "^14.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5"

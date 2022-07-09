@@ -1,85 +1,52 @@
-# Grover monetary transaction
+# Hexagonal architecture
 
 # Table of Contents
 
-- [Grover monetary transaction](#grover-monetary-transaction)
-- [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-      - [Provided APIs](#provided-apis)
-  - [Code architecture](#code-architecture)
-  - [source code](#source-code)
-  - [Service build information](#service-build-information)
-    - [Regular user](#regular-user)
-    - [Advanced user](#advanced-user)
-  - [Deployment](#deployment)
-      - [Helm](#helm)
-      - [Kubernetes manifests](#kubernetes-manifests)
-  - [Monitoring and alerting](#monitoring-and-alerting)
-    - [Health check](#health-check)
-  - [OpenApi](#openapi)
-  - [Documentation](#documentation)
-  - [ToDo list](#todo-list)
+- [Overview](#overview)
+  
+- [Code architecture](#code-architecture)
+  
+- [source code](#source-code)
+  
+- [Service build information](#service-build-information)
+  
+- [Regular user](#regular-user)
+  
+- [Advanced user](#advanced-user)
+  
+- [Deployment](#deployment)
+  
+- [Helm](#helm)
+  
+- [Kubernetes manifests](#kubernetes-manifests)
+  
+- [Monitoring and alerting](#monitoring-and-alerting)
+  
+- [Health check](#health-check)
+  
+- [OpenApi](#openapi)
+  
+- [Documentation](#documentation)
+  
+- [ToDo list](#todo-list)
+  
 
 ## Overview
 
-Grover monetary transaction provides a bunch of REST APIs to simulate a monetary transaction for the given user. It provides following list of APIs
-
----
-
-#### Provided APIs
-
-- Create new account (`/api/v1/account`)***[POST][GET][PUT][DELETE]***
-
-- Deposit money (`/api/v1/balance/deposit`)***[POST]***
-
-- Widraw money (`/api/v1/balance/widraw`)***[POST]***
-
-- Show balance(`/api/v1/balance`)***[GET]***
+The **hexagonal architecture**, or **ports and adapters architecture**, is an architectural pattern used in [software design](https://en.wikipedia.org/wiki/Software_design "Software design"). It aims at creating [loosely coupled](https://en.wikipedia.org/wiki/Loose_coupling "Loose coupling") application components that can be easily connected to their software environment by means of ports and [adapters](https://en.wikipedia.org/wiki/Adapter_pattern "Adapter pattern"). This makes components exchangeable at any level and facilitates test automation.
 
 ---
 
 ## Code architecture
 
-Onion Architecture
-
-```bash
-src
-├── account
-│   ├── controller
-│   ├── dto
-│   ├── entity
-│   ├── repository
-│   ├── service
-│   └── test_factory
-├── app
-│   ├── controller
-│   └── service
-├── common
-│   ├── enums
-│   ├── helpers
-│   └── pipes
-├── config
-│   └── env
-│       └── helper
-├── health
-│   └── controller
-├── http
-│   ├── enums
-│   ├── exceptions
-│   ├── interface
-│   └── service
-└── logger
-    ├── interceptors
-    └── service
-```
+![Group 4 1svg](/images/structure.svg)
 
 ---
 
 ## source code
 
 ```bash
-tar -xvf monetary-transaction.tar
-
+git clone https://github.com/MoeidHeidari/nestjs-boilerplate
 cd monetary-transaction
 ```
 
@@ -91,8 +58,11 @@ There are different stages of building the application for this service. Based o
 
 ```bash
 npm install
+
 npm run build
+
 npm run test:ci
+
 npm start:{dev || debug || prod}
 ```
 
@@ -100,21 +70,28 @@ npm start:{dev || debug || prod}
 
 ```bash
 cd scripts
-bash run.sh -h
-2022.05.30.14.43
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-buildDocker] [-runDocker] [-runApp] [-runDoc] [-packageHelm]
 
+bash run.sh -h
+
+2022.05.30.14.43
+
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-buildDocker] [-runDocker] [-runApp] [-runDoc] [-packageHelm]
 
 This script helps you to run the application in different forms. below you can get the full list of available options.
 
 Available options:
 
--h, --help              Print this help and exit
--buildDocker            Build the docker image called "grover:latest"
--runDocker              Build the docker image and run on local machine
--runApp                 Run application with npm in usual way for development
--runDoc                 Generate the code documentation
--packageHelm            makes a helm package from the helm chart.
+-h, --help Print this help and exit
+
+-buildDocker Build the docker image called "imageName:latest"
+
+-runDocker Build the docker image and run on local machine
+
+-runApp Run application with npm in usual way for development
+
+-runDoc Generate the code documentation
+
+-packageHelm makes a helm package from the helm chart.
 ```
 
 ## Deployment
@@ -125,7 +102,8 @@ with the following instruction you can install the helm chart on an up and runni
 
 ```bash
 cd k8s
-helm install {grover-app} {app-0.1.0.tgz} --set service.type=NodePort
+
+helm install {sample-app} {app-0.1.0.tgz} --set service.type=NodePort
 ```
 
 #### Kubernetes manifests
@@ -134,20 +112,16 @@ Alternativelly you can deploy the application on an up an running kubernetes clu
 
 ```bash
 cd k8s/configFiles
-
-kubectl apply -f grover-namespace.yaml, grover-configmap.yaml, grover-deployment.yaml, grover-service.yaml
+kubectl apply -f app-namespace.yaml, app-configmap.yaml, app-deployment.yaml, app-service.yaml
 ```
 
 it should give you following output
 
 ```bash
-namespace/grover created
-
-configmap/grover-config created
-
-deployment.apps/grover created
-
-service/grover created
+namespace/app created
+configmap/app-config created
+deployment.apps/app created
+service/app created
 ```
 
 ## Monitoring and alerting
@@ -188,12 +162,4 @@ http://localhost:7000
 
 ## ToDo list
 
-- [ ] add moneytion from one account to another account
-
-- [ ] apply commision to money transaction
-
-- [ ] apply commision to widraw money
-
-- [ ] apply deposit fee per minute to the balance
-
-- [ ] add counter metric to the apis
+- [ ] add terraform infrastructure

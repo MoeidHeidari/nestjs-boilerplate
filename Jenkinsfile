@@ -5,11 +5,10 @@ pipeline {
         HOST= "10.1.0.14"
         PORT= "8081"
         
-        IMAGE_NAME= "nestjs-boilerplate"
+        IMAGE_NAME= "nestjs-boilerplate-app"
         REGISTRY_CREDENTIAL= 'docker-registery-credentials'
         DOCKER_IMAGE=''
-        HOME="."
-        
+        HOME="." 
     }
   tools {nodejs "node"}
   //=====================================================================Build stage======================================================================================================
